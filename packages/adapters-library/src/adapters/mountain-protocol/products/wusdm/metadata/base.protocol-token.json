@@ -1,0 +1,16 @@
+[
+  {
+    "address": "0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812",
+    "name": "Wrapped Mountain Protocol USD",
+    "symbol": "wUSDM",
+    "decimals": 18,
+    "underlyingTokens": [
+      {
+        "address": "0x59d9356e565ab3a36dd77763fc0d87feaf85508c",
+        "symbol": "USDM",
+        "name": "Mountain Protocol USD",
+        "decimals": 18
+      }
+    ]
+  }
+]
