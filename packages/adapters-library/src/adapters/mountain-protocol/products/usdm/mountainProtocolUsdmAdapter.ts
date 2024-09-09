@@ -30,7 +30,7 @@ type AdditionalMetadata = {
   underlyingTokens: Erc20Metadata[]
 }
 
-const PROTOCOL_TOKEN_ADDRESS = '0x59d9356e565ab3a36dd77763fc0d87feaf85508c'
+const PROTOCOL_TOKEN_ADDRESS = '0x59D9356E565Ab3A36dD77763Fc0d87fEaf85508C'
 export class MountainProtocolUsdmAdapter extends SimplePoolAdapter<AdditionalMetadata> {
   productId = 'usdm'
 
@@ -66,7 +66,7 @@ export class MountainProtocolUsdmAdapter extends SimplePoolAdapter<AdditionalMet
             address: this.getUSDCAddress(),
             symbol: 'USDC',
             name: 'USD Coin',
-            decimals: 18,
+            decimals: 6,
           },
         ],
       },

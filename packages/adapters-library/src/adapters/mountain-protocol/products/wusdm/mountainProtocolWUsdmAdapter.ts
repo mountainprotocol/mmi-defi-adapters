@@ -54,7 +54,7 @@ export class MountainProtocolWUsdmAdapter extends SimplePoolAdapter<AdditionalMe
         decimals: 18,
         underlyingTokens: [
           {
-            address: '0x59d9356e565ab3a36dd77763fc0d87feaf85508c',
+            address: '0x59D9356E565Ab3A36dD77763Fc0d87fEaf85508C',
             name: 'Mountain Protocol USD',
             symbol: 'USDM',
             decimals: 18,
