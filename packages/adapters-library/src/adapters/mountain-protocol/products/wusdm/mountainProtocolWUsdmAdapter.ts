@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { SimplePoolAdapter } from '../../../../core/adapters/SimplePoolAdapter'
+import { CacheToFile } from '../../../../core/decorators/cacheToFile'
 import {
   PositionType,
   ProtocolDetails,
@@ -13,10 +14,9 @@ import {
   WriteActionInputSchemas,
   WriteActions,
 } from '../../../../types/writeActions'
-import { Wusdm__factory } from '../../contracts'
-import { GetTransactionParams } from '../../../supportedProtocols'
 import { Protocol } from '../../../protocols'
-import { CacheToFile } from '../../../../core/decorators/cacheToFile'
+import { GetTransactionParams } from '../../../supportedProtocols'
+import { Wusdm__factory } from '../../contracts'
 
 type AdditionalMetadata = {
   underlyingTokens: Erc20Metadata[]
@@ -143,41 +143,41 @@ export class MountainProtocolWUsdmAdapter extends SimplePoolAdapter<AdditionalMe
    *
    * TODO: Replace code with actual implementation logic according to your protocol's requirements and the actions supported.
    */
-  // async getTransactionParams({
-  //   action,
-  //   inputs,
-  // }: Extract<
-  //   GetTransactionParams,
-  //   { protocolId: typeof Protocol.MountainProtocol; productId: 'wusdm' }
-  // >): Promise<{ to: string; data: string }> {
-  //   // Example switch case structure for implementation:
-  //   const poolContract = Wusdm__factory.connect(
-  //     '0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812',
-  //     this.provider,
-  //   )
+  async getTransactionParams({
+    action,
+    inputs,
+  }: Extract<
+    GetTransactionParams,
+    { protocolId: typeof Protocol.MountainProtocol; productId: 'wusdm' }
+  >): Promise<{ to: string; data: string }> {
+    // Example switch case structure for implementation:
+    const poolContract = Wusdm__factory.connect(
+      '0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812',
+      this.provider,
+    )
 
-  //   switch (action) {
-  //     case WriteActions.Deposit: {
-  //       const { amount, to } = inputs
-  //       return poolContract.deposit.populateTransaction(amount, to)
-  //     }
-  //     case WriteActions.Withdraw: {
-  //       const { amount, from } = inputs
-  //       return poolContract.redeem.populateTransaction(amount, from, from)
-  //     }
-  //     default:
-  //       throw new Error('Action not supported')
-  //   }
-  // }
+    switch (action) {
+      case WriteActions.Deposit: {
+        const { amount, to } = inputs
+        return poolContract.deposit.populateTransaction(amount, to)
+      }
+      case WriteActions.Withdraw: {
+        const { amount, from } = inputs
+        return poolContract.redeem.populateTransaction(amount, from, from)
+      }
+      default:
+        throw new Error('Action not supported')
+    }
+  }
 }
 
-// export const WriteActionInputs = {
-//   [WriteActions.Deposit]: z.object({
-//     amount: z.string(),
-//     to: z.string(),
-//   }),
-//   [WriteActions.Withdraw]: z.object({
-//     amount: z.string(),
-//     from: z.string(),
-//   }),
-// } satisfies WriteActionInputSchemas
+export const WriteActionInputs = {
+  [WriteActions.Deposit]: z.object({
+    amount: z.string(),
+    to: z.string(),
+  }),
+  [WriteActions.Withdraw]: z.object({
+    amount: z.string(),
+    from: z.string(),
+  }),
+} satisfies WriteActionInputSchemas
