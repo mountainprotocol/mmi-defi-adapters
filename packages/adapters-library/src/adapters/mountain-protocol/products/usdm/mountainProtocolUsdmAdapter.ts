@@ -103,7 +103,7 @@ export class MountainProtocolUsdmAdapter extends SimplePoolAdapter<AdditionalMet
 
     const underlyingTokenBalance = {
       ...underlyingToken!,
-      balanceRaw: protocolTokenBalance.balanceRaw,
+      balanceRaw: BigInt(1 ** 6),
       type: TokenType.Underlying,
     }
 
@@ -117,8 +117,8 @@ export class MountainProtocolUsdmAdapter extends SimplePoolAdapter<AdditionalMet
       PROTOCOL_TOKEN_ADDRESS,
     )
 
-    // Always pegged one to one to underlying
-    const pricePerShareRaw = BigInt(10 ** protocolTokenMetadata.decimals)
+    // Convertion of underlying share to protocol token
+    const pricePerShareRaw = BigInt(10 ** underlyingToken!.decimals)
 
     return [
       {
