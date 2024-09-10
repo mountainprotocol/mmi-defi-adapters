@@ -117,7 +117,9 @@ export class MountainProtocolUsdmAdapter extends SimplePoolAdapter<AdditionalMet
       PROTOCOL_TOKEN_ADDRESS,
     )
 
-    // Convertion of underlying share to protocol token
+    // Not really clear how this works, but it seems that using USDC shares makes it work
+    // Basically if we were to set this to BigInt(10 ** 18) as any other ERC20
+    // The balance would add 12 extra 0's
     const pricePerShareRaw = BigInt(10 ** underlyingToken!.decimals)
 
     return [
